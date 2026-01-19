@@ -803,56 +803,6 @@
             });
             wrapper.appendChild(marker);
             return wrapper;
-            marker.className = 'map-micro-marker';
-            marker.setAttribute('data-index', idx);
-            marker.style.position = 'absolute';
-            marker.style.left = left + '%';
-            marker.style.top = top + '%';
-            marker.style.width = '71.25px';
-            marker.style.height = '71.25px';
-            marker.style.border = 'none';
-            marker.style.borderRadius = '50%';
-            marker.style.transform = 'translate(-50%,-50%)';
-            marker.style.cursor = 'pointer';
-            marker.style.display = 'flex';
-            marker.style.alignItems = 'center';
-            marker.style.justifyContent = 'center';
-            marker.style.boxShadow = '0 2px 8px rgba(0,0,0,0.18)';
-            marker.style.zIndex = '20';
-            marker.style.pointerEvents = 'auto';
-            marker.style.transition = 'box-shadow 0.2s, transform 0.2s';
-            marker.style.background = 'url("' + markerStills[idx] + '") center center/cover no-repeat';
-            marker.style.overflow = 'hidden';
-            marker.style.position = 'absolute';
-            // Add a zoom-in effect by using a pseudo-element for the image
-            var zoomImg = document.createElement('div');
-            zoomImg.style.width = '100%';
-            zoomImg.style.height = '100%';
-            zoomImg.style.background = 'url("' + markerStills[idx] + '") center center/cover no-repeat';
-            zoomImg.style.transform = 'scale(1.5)';
-            zoomImg.style.borderRadius = '50%';
-            zoomImg.style.pointerEvents = 'none';
-            marker.appendChild(zoomImg);
-            marker.addEventListener('mouseenter', function() {
-              marker.style.boxShadow = '0 4px 24px #b3b2ae';
-              marker.style.transform = 'translate(-50%,-50%) scale(1.15)';
-            });
-            marker.addEventListener('mouseleave', function() {
-              marker.style.boxShadow = '0 2px 8px rgba(0,0,0,0.18)';
-              marker.style.transform = 'translate(-50%,-50%) scale(1)';
-            });
-            marker.addEventListener('click', function(e) {
-              e.stopPropagation();
-              var grid = document.getElementById('microscopicGrid');
-              var modal = document.getElementById('microscopicModal');
-              if (typeof showModal === 'function') {
-                showModal(idx);
-              } else {
-                var card = document.querySelector('.micro-card[data-index="'+idx+'"]');
-                if (card) card.click();
-              }
-            });
-            return marker;
           }
           function renderMarkers() {
             if (!markersOverlay) return;
