@@ -234,14 +234,6 @@
   </div>
   <div id="scrollDownTag"><span>SCROLL DOWN</span><span class="arrow">&#8595;</span></div>
 
-          <!-- Microscopic Images Slideshow Overlay -->
-          <div id="microscopicOverlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.92);z-index:100000;align-items:center;justify-content:center;flex-direction:column;">
-            <button id="closeMicroscopic" style="position:absolute;top:32px;right:48px;font-size:2.2rem;background:none;border:none;color:#fff;cursor:pointer;z-index:100001;">&times;</button>
-            <button id="prevMicroscopic" style="position:absolute;left:32px;top:50%;transform:translateY(-50%);font-size:2.2rem;background:none;border:none;color:#fff;cursor:pointer;z-index:100001;">&#8592;</button>
-            <img id="microscopicImg" src="microscopic/m1.jpg" alt="Microscopic Image" style="max-width:70vw;max-height:70vh;border-radius:12px;box-shadow:0 4px 32px rgba(0,0,0,0.32);background:#222;">
-            <button id="nextMicroscopic" style="position:absolute;right:32px;top:50%;transform:translateY(-50%);font-size:2.2rem;background:none;border:none;color:#fff;cursor:pointer;z-index:100001;">&#8594;</button>
-            <div id="microscopicCaption" style="margin-top:24px;color:#fff;font-family:'Manofa',Arial,sans-serif;font-size:1.1rem;letter-spacing:0.08em;text-align:center;"></div>
-          </div>
 
       <div id="sidebar" style="position:fixed;left:0;top:50vh;transform:translateY(-50%);height:auto;width:120px;background:none;color:#fff;z-index:100002;display:none;flex-direction:column;align-items:flex-start;padding:24px 0 24px 0;box-shadow:2px 0 16px rgba(0,0,0,0.18);font-family:'Manofa',Arial,sans-serif;">
         <div id="cpfSubSections" style="width:100%;padding-left:12px;display:flex;flex-direction:column;gap:0;font-family:'Manofa',Arial,sans-serif;">
@@ -439,57 +431,6 @@
     });
 
 
-          // Microscopic Images Slideshow Logic
-          const microscopicImages = [
-            { src: 'microscopic/landscape1.jpg', caption: 'Landscape Card 1' },
-            { src: 'microscopic/landscape2.jpg', caption: 'Landscape Card 2' },
-            { src: 'microscopic/landscape3.jpg', caption: 'Landscape Card 3' },
-            { src: 'microscopic/landscape4.jpg', caption: 'Landscape Card 4' },
-            { src: 'microscopic/landscape5.jpg', caption: 'Landscape Card 5' },
-            { src: 'microscopic/landscape6.jpg', caption: 'Landscape Card 6' },
-            { src: 'microscopic/landscape7.jpg', caption: 'Landscape Card 7' },
-            { src: 'microscopic/landscape8.jpg', caption: 'Landscape Card 8' },
-            { src: 'microscopic/landscape9.jpg', caption: 'Landscape Card 9' },
-            { src: 'microscopic/landscape10.jpg', caption: 'Landscape Card 10' }
-          ];
-          let microscopicIndex = 0;
-          const microscopicOverlay = document.getElementById('microscopicOverlay');
-          const microscopicImg = document.getElementById('microscopicImg');
-          const microscopicCaption = document.getElementById('microscopicCaption');
-          const btnCloseMicroscopic = document.getElementById('closeMicroscopic');
-          const btnPrevMicroscopic = document.getElementById('prevMicroscopic');
-          const btnNextMicroscopic = document.getElementById('nextMicroscopic');
-
-          function showMicroscopic(idx) {
-            microscopicIndex = (idx + microscopicImages.length) % microscopicImages.length;
-            microscopicImg.src = microscopicImages[microscopicIndex].src;
-            microscopicCaption.textContent = microscopicImages[microscopicIndex].caption;
-          }
-          // Add click event to all microscopic thumbnails
-          document.querySelectorAll('.micro-card').forEach(function(card) {
-            card.addEventListener('click', function() {
-              const idx = parseInt(card.getAttribute('data-index'), 10);
-              if (!isNaN(idx)) {
-                microscopicOverlay.style.display = 'flex';
-                showMicroscopic(idx);
-              }
-            });
-          });
-          if (btnCloseMicroscopic && microscopicOverlay) {
-            btnCloseMicroscopic.addEventListener('click', function() {
-              microscopicOverlay.style.display = 'none';
-            });
-          }
-          if (btnPrevMicroscopic) {
-            btnPrevMicroscopic.addEventListener('click', function() {
-              showMicroscopic(microscopicIndex - 1);
-            });
-          }
-          if (btnNextMicroscopic) {
-            btnNextMicroscopic.addEventListener('click', function() {
-              showMicroscopic(microscopicIndex + 1);
-            });
-          }
       // Show GIF overlay for 4 seconds, then fade out over 1 second, then remove
       // Start background audio after GIF overlay is removed
       window.addEventListener('DOMContentLoaded', function() {
@@ -1334,31 +1275,7 @@
         });
       });
       </script>
-            if (e.key === 'ArrowLeft') {
-              showMicroscopic(microscopicIndex - 1);
-            } else if (e.key === 'ArrowRight') {
-              showMicroscopic(microscopicIndex + 1);
-            } else if (e.key === 'Escape') {
-              microscopicSlideshow.style.display = 'none';
-              if (microscopicGrid) microscopicGrid.style.display = 'grid';
-            }
-          }
-        });
-      });
-      </script>
-      </div>
-        #microscopicGrid {
-          margin-bottom: 64px;
-        }
-        .micro-card img {
-          box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-          background: #222;
-          display: block;
-        }
-    <script>
-      window.addEventListener('DOMContentLoaded', function() {
-        // ...existing code...
-    </script>
+      /* Removed legacy microscopicSlideshow keyboard navigation and unused script/styles */
   <style>
     html {
       scroll-padding-top: 80px;
