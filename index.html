@@ -213,9 +213,19 @@
     </style>
   <!-- --- Always-visible Stamp at Top Right --- -->
   <div id="stampCircle" style="position:fixed;top:28px;right:28px;z-index:20002;display:none;align-items:center;justify-content:center;pointer-events:auto;">
-    <a href="https://www.google.com/maps/place/Ion+Square+Gardens,+London+E2+7AB/@51.5305662,-0.0690014,591m/data=!3m2!1e3!4b1!4m6!3m5!1s0x48761cc6cbfc8a53:0x93f0a70f8cb54daa!8m2!3d51.530596!4d-0.0662474!16s%2Fg%2F11b8tcnb0r?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="display:block;width:122px;height:122px;">
+    <a href="https://www.google.com/maps/place/Ion+Square+Gardens,+London+E2+7AB/@51.5305662,-0.0690014,591m/data=!3m2!1e3!4b1!4m6!3m5!1s0x48761cc6cbfc8a53:0x93f0a70f8cb54daa!8m2!3d51.530596!4d-0.0662474!16s%2Fg%2F11b8tcnb0r?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="display:block;width:122px;height:122px;text-decoration:none !important;border:none !important;outline:none !important;background:none !important;">
       <img id="stampImg" src="stamp/white stamp.png" alt="Stamp" style="width:122px;height:122px;object-fit:contain;display:block;margin:auto;transition:transform 0.32s cubic-bezier(.68,-0.55,.27,1.55);" />
-      <div style="text-align:center;font-family:'Manofa',Arial,sans-serif;font-size:0.82rem;color:#fff;margin-top:2px;letter-spacing:0.08em;border-bottom:none;">Click &#8593;</div>
+      <div style="text-align:center;font-family:'Manofa',Arial,sans-serif;font-size:0.82rem;color:#fff;margin-top:2px;letter-spacing:0.08em;border-bottom:none !important;text-decoration:none !important;border:none !important;outline:none !important;background:none !important;display:block;">Click &#8593;</div>
+    </style>
+    <style>
+    #stampCircle a, #stampCircle a * {
+      text-decoration: none !important;
+      border: none !important;
+      outline: none !important;
+      background: none !important;
+      box-shadow: none !important;
+    }
+    </style>
     <script>
     // Stamp hover rotate and bounce
     document.addEventListener('DOMContentLoaded', function() {
