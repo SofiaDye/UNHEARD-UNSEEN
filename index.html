@@ -625,21 +625,22 @@
 
   <!-- Map Modal Overlay -->
   <div id="mapModal" class="overlay-fullscreen" style="display:none;z-index:30020;flex-direction:column;align-items:center;justify-content:center;overflow:auto;">
-    <div id="mapModalTitle" style="position:absolute;top:18px;left:50%;transform:translateX(-50%);font-family:'Manofa',Arial,sans-serif;font-size:2.1rem;letter-spacing:0.04em;color:#fff;text-transform:uppercase;z-index:20;text-align:center;pointer-events:none;user-select:none;">MAP</div>
-    <button id="closeMapModal" type="button" style="position:absolute;top:32px;right:48px;font-size:2.2rem;background:none;border:none;color:#fff;cursor:pointer;z-index:21;">&times;</button>
-    <div id="mapInstructionCircle" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:transparent;border-radius:50%;width:95.625px;height:95.625px;display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:0 4px 32px 0 rgba(0,0,0,0.25);z-index:20;pointer-events:none;user-select:none;">
+    <button id="closeMapModal" type="button" style="position:absolute;top:32px;right:48px;font-size:2.2rem;background:none;border:none;color:#111;cursor:pointer;z-index:1001;">&times;</button>
+    <div id="mapInstructionCircle" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:transparent;border-radius:50%;width:119.53px;height:119.53px;display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:0 4px 32px 0 rgba(0,0,0,0.25);z-index:20;pointer-events:none;user-select:none;">
       <div style="position:absolute;width:100%;height:100%;left:0;top:0;z-index:1;background:rgba(179,178,174,0.5);border-radius:50%;"></div>
       <div style="position:absolute;width:100%;height:100%;left:0;top:0;z-index:2;display:flex;align-items:center;justify-content:center;">
-        <span style="color:black;font-size:0.68rem;font-weight:bold;text-shadow:0 2px 8px rgba(0,0,0,0.12);padding:6px;">Click location markers to uncover the unseen and unheard</span>
+        <span style="color:black;font-size:0.68rem;font-weight:bold;text-shadow:0 2px 8px rgba(0,0,0,0.12);padding:6px;">Click location markers to uncover the Unheard and Unseen</span>
       </div>
     </div>
+  <!-- Black Stamp Overlay on Map Modal (top left corner) -->
+  <img src="stamp/black stamp.png" alt="Black Stamp" style="position:absolute; left:24px; top:24px; width:150px; height:auto; z-index:30; pointer-events:none; opacity:0.92;" />
 <script>
 // --- Bouncing Instructional Circle Animation ---
 document.addEventListener('DOMContentLoaded', function() {
   const mapModal = document.getElementById('mapModal');
   const instructionCircle = document.getElementById('mapInstructionCircle');
   const mapImg = document.getElementById('mapImage');
-  let animFrame, pos = {x: 0, y: 0}, vel = {x: 2, y: 2}, circleSize = 128, started = false;
+  let animFrame, pos = {x: 0, y: 0}, vel = {x: 2, y: 2}, circleSize = 160, started = false;
 
   function randomVelocity() {
     // Random direction, speed between 1 and 1.75 px per frame (slower)
@@ -649,18 +650,17 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function startBounce() {
-    if (!mapModal || !instructionCircle || !mapImg) return;
-    // Get map image bounds relative to modal
-    const mapRect = mapImg.getBoundingClientRect();
+    if (!mapModal || !instructionCircle) return;
+    // Get modal bounds
     const modalRect = mapModal.getBoundingClientRect();
     // Animation bounds (relative to modal)
     const bounds = {
-      left: mapRect.left - modalRect.left,
-      top: mapRect.top - modalRect.top,
-      right: mapRect.right - modalRect.left,
-      bottom: mapRect.bottom - modalRect.top
+      left: 0,
+      top: 0,
+      right: modalRect.width,
+      bottom: modalRect.height
     };
-    // Start at random position inside map
+    // Start at random position inside modal
     pos.x = bounds.left + Math.random() * (bounds.right - bounds.left - circleSize);
     pos.y = bounds.top + Math.random() * (bounds.bottom - bounds.top - circleSize);
     vel = randomVelocity();
@@ -729,18 +729,17 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
-    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;width:100vw;background:rgba(0,0,0,0.65);z-index:5;">
-      <div style="width:100%;max-width:1200px;margin-left:auto;margin-right:auto;position:relative;">
-        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);border-radius:18px;z-index:0;"></div>
-        <div style="position:relative;z-index:1;">
-          <div style="display:flex;flex-direction:row;align-items:center;width:100%;max-width:1200px;margin-left:auto;margin-right:auto;position:relative;">
-            <div id="mapKey" style="position:absolute;left:110px;top:50%;bottom:auto;transform:translateY(-50%);display:none;flex-direction:column;align-items:center;z-index:20;background:rgba(0,0,0,0.85);padding:13.5px 18px 13.5px 18px;border-radius:0;box-shadow:0 4px 24px rgba(0,0,0,0.22);gap:13.5px;">
-              <div style="font-family:'Manofa',Arial,sans-serif;font-size:0.9rem;color:#fff;letter-spacing:0.06em;margin-bottom:6px;text-align:center;">[KEY]</div>
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;width:100vw;background:rgba(0,0,0,0.65);z-index:5;position:relative;overflow:hidden;">
+      <div style="width:100vw;height:100vh;max-width:none;max-height:none;margin:0;position:relative;display:flex;align-items:center;justify-content:center;background:#fff;">
+        <div style="position:absolute;top:0;left:0;width:100vw;height:100vh;background:#fff;border-radius:0;z-index:0;"></div>
+        <div style="position:relative;z-index:1;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;">
+          <div style="display:flex;flex-direction:row;align-items:center;width:100vw;height:100vh;position:relative;justify-content:center;">
+            <div id="mapKey" style="position:absolute;left:1vw;top:50%;transform:translateY(-50%);display:none;flex-direction:column;align-items:center;z-index:20;background:rgba(0,0,0,0.85);padding:27px 36px 27px 36px;border-radius:0;box-shadow:0 4px 24px rgba(0,0,0,0.22);gap:27px;">
               <div id="mapKeyCol" style="display:flex;flex-direction:column;gap:13.5px;align-items:center;"></div>
             </div>
-            <div style="width:100%;display:flex;justify-content:center;align-items:center;position:relative;">
-                <img src="map/key for map.png" alt="Map Key" style="position:absolute;left:180px;bottom:20px;width:120px;height:auto;z-index:30;background:rgba(0,0,0,0.12);border-radius:0;" />
-              <img id="mapImage" src="map/map.jpg" alt="Map" style="max-width:896.484375px;width:89.6484375vw;height:auto;box-shadow:0 4px 32px rgba(0,0,0,0.32);border-radius:0;position:relative;z-index:1;" />
+            <div style="width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;position:relative;">
+                              <img src="map/key.jpg" alt="Key" style="position:absolute;left:2vw;bottom:2vh;width:12vw;min-width:120px;max-width:240px;height:auto;z-index:31;background:rgba(255,255,255,0.85);border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.18);" />
+              <img id="mapImage" src="map/map newest.jpg" alt="Map" style="width:100vw;height:100vh;max-width:100vw;max-height:100vh;object-fit:contain;box-shadow:0 4px 32px rgba(0,0,0,0.32);border-radius:0;position:relative;z-index:1;display:block;background:#fff;" />
               <svg id="mapLineSVG" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;" xmlns="http://www.w3.org/2000/svg">
                 <g style="display:none;">
                   <line id="circleLine1" x1="66%" y1="50%" x2="62%" y2="65%" stroke="#b3b2ae" stroke-width="2" stroke-linecap="round" />
@@ -762,6 +761,31 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
         <script>
+        // Hide navigation bar when map modal is open
+        document.addEventListener('DOMContentLoaded', function() {
+          var mapModal = document.getElementById('mapModal');
+          var navBar = document.querySelector('nav');
+          var sidebar = document.getElementById('sidebar');
+          var closeBtn = document.getElementById('closeMapModal');
+          var openBtn = document.getElementById('openMapModalBtn');
+          function updateNavVisibility() {
+            if (mapModal.style.display === 'flex') {
+              if (navBar) navBar.style.display = 'none';
+              if (sidebar) sidebar.style.display = 'none';
+            } else {
+              if (navBar) navBar.style.display = '';
+              if (sidebar) sidebar.style.display = '';
+            }
+          }
+          if (mapModal) {
+            // Observe modal display changes
+            const observer = new MutationObserver(updateNavVisibility);
+            observer.observe(mapModal, { attributes: true, attributeFilter: ['style'] });
+            // Also update on open/close button click
+            if (openBtn) openBtn.addEventListener('click', function() { setTimeout(updateNavVisibility, 10); });
+            if (closeBtn) closeBtn.addEventListener('click', function() { setTimeout(updateNavVisibility, 10); });
+          }
+        });
         // --- Add interactive microscopic markers to map and key ---
         document.addEventListener('DOMContentLoaded', function() {
           var mapImage = document.getElementById('mapImage');
@@ -834,8 +858,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Marker itself
             marker.className = 'map-micro-marker';
             marker.setAttribute('data-index', idx);
-            marker.style.width = '71.25px';
-            marker.style.height = '71.25px';
+            marker.style.width = '89.06px';
+            marker.style.height = '89.06px';
             marker.style.border = 'none';
             marker.style.borderRadius = '50%';
             marker.style.transform = 'none';
