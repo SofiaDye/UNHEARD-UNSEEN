@@ -267,6 +267,7 @@
           <a href="#section-process" id="processBtn" class="sidebar-btn subsection-btn" style="font-family:'Manofa',Arial,sans-serif;width:100%;padding:9px 8px 9px 24px;font-size:0.59rem;letter-spacing:0.08em;text-transform:uppercase;border:none;background:none;color:#fff;cursor:pointer;text-align:left;display:block;text-decoration:none;">COLLECTION IMAGES</a>
           <a href="#section-cards" id="cardsBtn" class="sidebar-btn subsection-btn" style="font-family:'Manofa',Arial,sans-serif;width:100%;padding:9px 8px 9px 24px;font-size:0.59rem;letter-spacing:0.08em;text-transform:uppercase;border:none;background:none;color:#fff;cursor:pointer;text-align:left;display:block;text-decoration:none;">INVESTIGATION FILES</a>
           <a href="#section-download" id="downloadBtn" class="sidebar-btn subsection-btn" style="font-family:'Manofa',Arial,sans-serif;width:100%;padding:9px 8px 9px 24px;font-size:0.59rem;letter-spacing:0.08em;text-transform:uppercase;border:none;background:none;color:#fff;cursor:pointer;text-align:left;display:block;text-decoration:none;">DOWNLOAD PDF</a>
+                  <a href="#author-note-anchor" id="authorNoteBtn" class="sidebar-btn subsection-btn" style="font-family:'Manofa',Arial,sans-serif;width:100%;padding:9px 8px 9px 24px;font-size:0.59rem;letter-spacing:0.08em;text-transform:uppercase;border:none;background:none;color:#fff;cursor:pointer;text-align:left;display:block;text-decoration:none;">A NOTE FROM THE CREATOR</a>
         </div>
         <style>
           .sidebar-btn.selected {
@@ -1318,7 +1319,6 @@ document.addEventListener('DOMContentLoaded', function() {
         <div id="microscopicModalCaption" style="margin-top:24px;color:#fff;font-family:'Manofa',Arial,sans-serif;font-size:1.1rem;letter-spacing:0.08em;text-align:center;"></div>
         <div id="microscopicModalSection" style="margin-top:8px;color:#fff;font-family:'Manofa',Arial,sans-serif;font-size:1.1rem;letter-spacing:0.06em;text-align:center;"></div>
       </div>
-      // --- Microscopic Slideshow Logic ---
       <script>
       document.addEventListener('DOMContentLoaded', function() {
         const images = [
@@ -1442,7 +1442,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       });
       </script>
-      /* Removed legacy microscopicSlideshow keyboard navigation and unused script/styles */
   <style>
     .main-section {
       width: 100%;
@@ -1476,10 +1475,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     html, body {
       scroll-behavior: smooth;
-      scroll-snap-type: y mandatory;
     }
     section {
-      scroll-snap-align: start;
+      /* scroll-snap-align: start; */
       min-height: 100vh;
       width: 100vw;
       box-sizing: border-box;
@@ -1817,4 +1815,46 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 </body>
+
+  <!-- NOTE FROM THE AUTHOR Section -->
+  <section id="section-author-note" style="min-height:60vh;width:100vw;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+    <div style="padding:24px 24px 32px 24px;max-width:700px;width:95vw;margin:0 auto;text-align:center;margin-top:-260px;">
+      <a id="author-note-anchor" style="display:block;position:relative;top:-120px;"></a>
+        <style>
+          #section-author-note {
+            margin-top: 220px;
+          }
+        </style>
+      <h2 style="color:#fff;font-family:'Manofa',Arial,sans-serif;font-size:2rem;margin-bottom:18px;text-align:center;">A NOTE FROM THE CREATOR</h2>
+      <div style="position:relative;display:inline-block;margin-top:32px;max-width:75%;width:100%;">
+          <img src="note from the creator/note from creator.png" alt="Note from the Creator" style="width:100%;height:auto;box-shadow:0 2px 12px rgba(0,0,0,0.18);border-radius:0;display:block;" />
+          <img id="grandad-img" src="note from the creator/grandad.jpeg" alt="Grandad" style="position:absolute;left:44%;bottom:9%;transform:translateX(-50%) rotate(5deg);width:62.4%;height:auto;box-shadow:0 2px 12px rgba(0,0,0,0.22);border-radius:0;transition:transform 0.35s cubic-bezier(.2,1.2,.4,1);" />
+                      <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                          var grandadImg = document.getElementById('grandad-img');
+                          if (grandadImg) {
+                            grandadImg.style.cursor = 'pointer';
+                            grandadImg.addEventListener('click', function(e) {
+                              e.stopPropagation();
+                              grandadImg.classList.toggle('expanded');
+                            });
+                          }
+                        });
+                      </script>
+              <style>
+                #grandad-img:not(.expanded):hover {
+                  transform: translateX(-50%) rotate(0deg);
+                }
+                #grandad-img.expanded {
+                  left: 50% !important;
+                  transform: translate(-50%, 0) rotate(0deg) scale(1.25) !important;
+                  width: 90% !important;
+                  box-shadow: 0 8px 32px rgba(0,0,0,0.32) !important;
+                  z-index: 100;
+                }
+              </style>
+      </div>
+    </div>
+  </section>
+
 </html>
